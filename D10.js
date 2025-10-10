@@ -94,21 +94,45 @@ console.log(splittato)
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
 
-const deleteOne = (cancella, true)
+/*const deleteOne = (cancella, true) => {
+  if true {
+    return cancella.slice (1)
+  }
+}
 
+console.log(deleteOne)
+*/
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
 
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
 
+const onlyLetters = "I have 4 dogs"
+const cleaned = onlyLetters.replace(/[0-9]/, "")
+console.log(cleaned)
+
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
 
+function isThisAnEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+const email1 = "test@example.com"
+
+console.log(isThisAnEmail(email1))
+
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
+
+const whatDayIsIt = new Date()
+const giornoDelMese = whatDayIsIt.getDate()
+
+console.log(giornoDelMese)
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -122,6 +146,8 @@ const deleteOne = (cancella, true)
       values: [3, 3, 4]
   }
 */
+
+const dice = () => Math.floor(Math.random() * 6) + 1
 
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
