@@ -157,6 +157,18 @@ const dice = () => Math.floor(Math.random() * 6) + 1
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
 
+const isTodayMyBirthday = () => {
+  const today = new Date()
+  const day = today.getDate()
+  const month = today.getMonth()
+
+  const myBirthdayDay = 18
+  const myBirthdayMonth = 4
+
+  return (day === myBirthdayDay) & (month === myBirthdayMonth)
+}
+console.log(isTodayMyBirthday())
+
 // Arrays & Oggetti
 
 // NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
@@ -166,68 +178,76 @@ const dice = () => Math.floor(Math.random() * 6) + 1
   in esso la proprietà chiamata come la stringa passata come secondo parametro.
 */
 
-/* ESERCIZIO 12
-  Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 13
-  Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 14
-  Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 15
-  Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 16
-  Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 17
-  Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
-*/
-
-/* ESERCIZIO 18
-  Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
-  "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
-*/
-
-/* ESERCIZIO 19
-  Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
-*/
-
-// DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
-
 /* ESERCIZIO 20
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
+
+document.getElementById("container")
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
 
+document.querySelectorAll("td")
+
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
+
+function printAllTdText() {
+  const tds = document.querySelectorAll("td")
+
+  for (const td of tds) {
+    console.log(td.textContent)
+  }
+}
+printAllTdText()
 
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
 
+function addRedBackgroundToLinks() {
+  const links = document.querySelectorAll("a")
+
+  links.forEach((link) => {
+    link.style.backgroundColor = "red"
+  })
+}
+
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
+
+function addToMyList(text) {
+  const myList = document.getElementById("myList")
+  const newItem = document.createElement("li")
+  newItem.textContent = text
+  myList.appendChild(newItem)
+}
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 
+function clearMyList() {
+  const myList = document.getElementById("myList")
+  myList.innerHTML = "" // rimuove tutto il contenuto della lista
+}
+clearMyList()
+
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
+
+function addTestClassToTr() {
+  const rows = document.querySelectorAll("tr")
+
+  rows.forEach((row) => {
+    row.classList.add("test")
+  })
+}
+addTestClassToTr()
 
 // [EXTRA] JS Avanzato
 
@@ -376,3 +396,87 @@ const movies = [
       "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
   },
 ]
+
+/* ESERCIZIO 12
+  Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
+*/
+
+/*const newestMovie = movies.Year(Math.max(...dateList))
+console.log(newestMovie)
+
+/* ESERCIZIO 13
+  Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
+*/
+
+const countMovies = () => movies.length
+console.log(countMovies())
+
+/* ESERCIZIO 14
+  Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
+*/
+
+const onlyTheYears = () => {
+  return movies.map((movie) => movie.Year)
+}
+console.log(onlyTheYears)
+
+/* ESERCIZIO 15
+  Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
+*/
+
+const onlyInLastMillennium = () => {
+  return movies.filter((movie) => movie.Year < 2000)
+}
+console.log(onlyInLastMillennium())
+
+/* ESERCIZIO 16
+  Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
+*/
+
+/*const sumAllTheYears = 0
+
+for (let i = 0; i < movies.Year.length; i++) {
+  sumAllTheYears += movies.Year[i]
+}
+
+console.log(sumAllTheYears)
+
+/* ESERCIZIO 17
+  Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
+*/
+
+const searchByTitle = (searchString) => {
+  return movies.filter((movie) => movie.Title.includes(searchString))
+}
+console.log(searchByTitle("lord"))
+
+/* ESERCIZIO 18
+  Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
+  "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
+*/
+
+const searchAndDivide = (searchString) => {
+  const match = []
+  const unmatch = []
+
+  for (const movie of movies) {
+    if (movie.Title.includes(searchString)) {
+      match.push(movie)
+    } else {
+      unmatch.push(movie)
+    }
+  }
+
+  return {
+    match,
+    unmatch,
+  }
+}
+
+console.log(searchAndDivide("lord"))
+
+/* ESERCIZIO 19
+  Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
+*/
+
+// DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
